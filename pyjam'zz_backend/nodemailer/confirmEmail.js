@@ -1,37 +1,43 @@
 const nodemailer = require('nodemailer');
 
 async function createLetterConfirmEmail(urlForVerifyAccount, emailCustomer){
-    try{
-        let testAccount = await nodemailer.createTestAccount();
+  try{
+    
+    let transporter = nodemailer.createTransport({
+      name: 'wwidev.tech',
+      host: process.env.NODEMAILER_SMTP_HOSTNAME,
+      port: process.env.NODEMAILER_SMTP_PORT,
+      secure: true, 
+      auth: {
+        user: process.env.NODEMAILER_EMAIL, 
+        pass: process.env.NODEMAILER_PASS,
+      },
+    });
 
-        // create reusable transporter object using the default SMTP transport
-        let transporter = nodemailer.createTransport({
-          host: "smtp.ethereal.email",
-          port: 587,
-          secure: false, // true for 465, false for other ports
-          auth: {
-            user: process.env.NODEMAILER_EMAIL, // generated ethereal user
-            pass: process.env.NODEMAILER_PASS, // generated ethereal password
-          },
-        });
-      
-        // send mail with defined transport object
-        let info = await transporter.sendMail({
-          from: "Pyjam'zz", // sender address
-          to: emailCustomer, // list of receivers
-          subject: "Pyjam'zz : Confirmez votre adresse mail", // Subject line
-          text: `Merci de confirmer votre compte en cliquant sur le lien suivant : ${urlForVerifyAccount}` // plain text body
-        });
-      
-        console.log("Message sent: %s", info.messageId)
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-      
-       
+    transporter.verify(function (error, success) {
+      if (error) {
+        return console.log("Error when verify transporter : ",error)
+      }
+    });
+    
+    const mailOptions = {
+      from: `Pyjam'zz, ${process.env.NODEMAILER_EMAIL}`, 
+      to: emailCustomer, 
+      subject: "Pyjam'zz : Confirmez votre adresse mail", 
+      text: `Merci de confirmer votre compte en cliquant sur le lien suivant : ${urlForVerifyAccount}`,
+      html: `Merci de confirmer votre compte en cliquant sur le lien suivant : ${urlForVerifyAccount}`
+    };
 
-
-    }catch(e){
-        return e
-    }
+    transporter.sendMail(mailOptions, (error, info)=>{
+      if(error){
+        return console.log("Error when send mail :",error)
+      }
+     console.log('Email sending : '+info)
+    })
+    
+  }catch(e){
+    return console.log(e)
+  }
 }
 
 module.exports = createLetterConfirmEmail;

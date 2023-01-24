@@ -23,14 +23,10 @@ exports.registration = async (req, res) => {
                     bcrypt.hash(PasswordNoHashed, 10)
                     .then(hashedPassword=>{
                         const password = hashedPassword;
-                        Customer.create({genre, lastName, firstName,  email, password, phone, dateOfBirth, validate: true})
                         const tokenToVerifyAccount = jwt.sign({user: email}, process.env.SECRET_KEY_EMAIL, {expiresIn: "24h"});
                         const urlForVerifyAccount = `http://localhost:5173/client/verification-email/${tokenToVerifyAccount}`
                         createLetterConfirmEmail(urlForVerifyAccount, email)
-                        .then(data=>{
-                           data
-                        })
-                        
+                        Customer.create({genre, lastName, firstName,  email, password, phone, dateOfBirth, validate: true}) 
                         res.status(201).send({message: "Your account has been successfully created."});
                     })
             }else{
