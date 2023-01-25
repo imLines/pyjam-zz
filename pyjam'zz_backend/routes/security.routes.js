@@ -5,7 +5,8 @@ module.exports = app => {
     const auth = require('../config/auth.config');
 
     router.post('/registration', security.registration);
+    router.post('/confirm-email', security.confirmEmail);
     router.post('/login', security.login);
-    router.post('/changepassword', auth, security.changePassword)
+    router.post('/change-password', auth, security.changePassword);
     app.use('/log', router)
 };  

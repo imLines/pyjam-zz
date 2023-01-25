@@ -36,7 +36,7 @@ const Customer = sequelize.define("customer", {
         allowNull: false
     },
     tokenValidate: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     }
 });
 

@@ -2,7 +2,8 @@ const Customer = require('../models/customer.model');
 const Admin = require('../models/admin.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const createLetterConfirmEmail = require('../nodemailer/confirmEmail')
+const createLetterConfirmEmail = require('../nodemailer/createLetterConfirmEmail')
+const randomString = require('randomstring');
 
 
 exports.registration = async (req, res) => {
@@ -23,10 +24,10 @@ exports.registration = async (req, res) => {
                     bcrypt.hash(PasswordNoHashed, 10)
                     .then(hashedPassword=>{
                         const password = hashedPassword;
-                        const tokenToVerifyAccount = jwt.sign({user: email}, process.env.SECRET_KEY_EMAIL, {expiresIn: "24h"});
-                        const urlForVerifyAccount = `http://localhost:5173/client/verification-email/${tokenToVerifyAccount}`
+                        const randomStringToVerify = randomString.generate({length: 100, charset: 'alphabetic'})
+                        const urlForVerifyAccount = `http://localhost:5173/client/verification-email/${randomStringToVerify}`
                         createLetterConfirmEmail(urlForVerifyAccount, email)
-                        Customer.create({genre, lastName, firstName,  email, password, phone, dateOfBirth, validate: true}) 
+                        Customer.create({genre, lastName, firstName,  email, password, phone, dateOfBirth, tokenValidate: randomStringToVerify, validate: false}) 
                         res.status(201).send({message: "Your account has been successfully created."});
                     })
             }else{
@@ -90,5 +91,27 @@ exports.changePassword = (req, res)=>{
         }
     }catch(e){
         res.status(400).send({message: "Error: "+e});
+    }
+}
+
+
+exports.confirmEmail = (req, res)=>{
+    try{
+        if(!req.body.token){
+            res.status(400).send({message: "Vous devez fournir un token."})
+        }
+        const token = req.body.token;
+        Customer.findOne({raw: true, where:{validate: false, tokenValidate: token}})
+        .then(findCustomer=>{
+            if(findCustomer){
+                Customer.update({validate: true, tokenValidate: ''}, {where:{id: findCustomer.id}})
+                res.status(200).send({message: "Le compte à bien été vérifié."})
+            }else{
+                res.status(404).send({message: "Aucun client trouvé avec ce token."})
+            }
+        })
+
+    }catch(e){
+        res.status(400).send({message: "Token erroné ou corrompu."})
     }
 }

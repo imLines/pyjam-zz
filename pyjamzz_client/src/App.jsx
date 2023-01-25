@@ -33,6 +33,7 @@ import SexyLingerie from './components/customer/pages/demon/SexyLingerie';
 
 //SECURITY
 import CustomerSignIn from './components/customer/pages/authentification/CustomerSignIn';
+import CustomerConfirmEmail from './components/customer/pages/authentification/CustomerConfirmEmail';
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
             <Route path='*' element={<NoFound />} />
             <Route exact path='/' element={<Home />} />
             <Route path='/client' element={<Customer />}>
+                <Route path='/client/verification-email/:token' element={<CustomerConfirmEmail/>}/>
                 <Route exact path='/client/inscription' element={<CustomerSignIn/>}/>
 
 
