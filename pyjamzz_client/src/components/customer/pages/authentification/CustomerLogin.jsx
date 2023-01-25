@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -8,6 +9,8 @@ function CustomerLogin(){
 
     //Error Managing
     const [errorMessage, setErrorMessage] = useState('')
+
+    const navigateTo = useNavigate();
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -23,9 +26,12 @@ function CustomerLogin(){
                 if(data.status != 200){
                     setErrorMessage('Adresse email et/ou mot de passe incorrect.')
                 }else{
-                    console.log('connected ')
+                    return data.json()
                 }
-                
+            })
+            .then(token=>{
+                localStorage.setItem('token', token.token)
+                navigateTo('/')
             })
 
 

@@ -31,10 +31,17 @@ import SexyNightie from './components/customer/pages/demon/SexyNightie';
 import SexyBodysuit from './components/customer/pages/demon/SexyBodysuit';
 import SexyLingerie from './components/customer/pages/demon/SexyLingerie';
 
-//SECURITY
+//REGISTRATION
 import CustomerSignIn from './components/customer/pages/authentification/CustomerSignIn';
 import CustomerConfirmEmail from './components/customer/pages/authentification/CustomerConfirmEmail';
 import CustomerLogin from './components/customer/pages/authentification/CustomerLogin';
+
+//CUSTOMER PROTECTED
+import CustomerAccount from './components/customer/pages/protected/CustomerAccount';
+
+
+//SECURITY
+import CustomerAccessToken from './components/security/CustomerAccessToken';
 
 function App() {
 
@@ -48,6 +55,10 @@ function App() {
                 <Route path='/client/verification-email/:token' element={<CustomerConfirmEmail/>}/>
                 <Route exact path='/client/inscription' element={<CustomerSignIn/>}/>
                 <Route exact path='/client/connexion' element={<CustomerLogin/>}/>
+
+                <Route exact path='/client/compte-client' element={<CustomerAccessToken><CustomerAccount/></CustomerAccessToken>}>
+                    
+                </Route>
 
                 <Route exact path='/client/nos-produits' element={<AllProducts />} />
                 <Route exact path='/client/nos-produits/nouveautes' element={<Novelty />} />

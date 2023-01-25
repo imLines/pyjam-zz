@@ -3,8 +3,12 @@ import NavbarDesktop from "../partials/navbar/NavbarDesktop";
 import NavbarMobile from "../partials/navbar/NavbarMobile/NavbarMobile";
 import demonIcon from '../../../assets/icons/demon.svg';
 import angelIcon from '../../../assets/icons/angel.svg';
+import { useEffect } from "react";
+
 
 function Home(){
+
+
     return(
         <div className="bg-p-light">
             {/* <NavbarDesktop/> */}

@@ -54,7 +54,7 @@ exports.login = (req, res)=>{
                         const id = customer.id; 
                         const email = customer.email;
                         const token = jwt.sign({customerId: id}, process.env.SECRET_KEY_TOKEN_CUSTOMER, {expiresIn: "3h"});
-                        res.status(200).json({token: token, customer:{email} });
+                        res.status(200).json({token});
                     }else{
                         res.status(400).send({message: "Incorrect password."})
                     }
