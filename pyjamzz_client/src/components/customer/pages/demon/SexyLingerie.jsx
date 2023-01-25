@@ -27,7 +27,7 @@ function SexyLingerie(){
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       };
-      fetch('http://localhost:8000/product/list/lingerie-sexy', { requestOptions })
+      fetch('/api/product/list/lingerie-sexy', { requestOptions })
         .then(response => {
           return response.json()
         })

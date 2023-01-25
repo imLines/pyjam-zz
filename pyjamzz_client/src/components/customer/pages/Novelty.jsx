@@ -15,7 +15,7 @@ function Novelty(){
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' }
             };        
-            fetch('http://localhost:8000/product/novelty', { requestOptions })
+            fetch('/api/product/novelty', { requestOptions })
             .then(response=>{
                 return response.json()
             })

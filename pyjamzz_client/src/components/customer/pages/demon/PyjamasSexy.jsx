@@ -12,7 +12,7 @@ function PyjamasSexy(){
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             };        
-            fetch('http://localhost:8000/product/list/pyjamas-sexy', { requestOptions })
+            fetch('/api/product/list/pyjamas-sexy', { requestOptions })
             .then(response=>{
                 return response.json()
             })

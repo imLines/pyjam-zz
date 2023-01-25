@@ -46,7 +46,7 @@ function ProductPage() {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             };
-            fetch(`http://localhost:8000/product/${productId}`, { requestOptions })
+            fetch(`/api/product/${productId}`, { requestOptions })
                 .then(response => {
                     return response.json()
                 })

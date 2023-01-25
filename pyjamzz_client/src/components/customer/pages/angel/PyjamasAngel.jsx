@@ -14,7 +14,7 @@ function PyjamasAngel(){
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             };        
-            fetch('http://localhost:8000/product/list/pyjamas-ange', { requestOptions })
+            fetch('/api/product/list/pyjamas-ange', { requestOptions })
             .then(response=>{
                 return response.json()
             })

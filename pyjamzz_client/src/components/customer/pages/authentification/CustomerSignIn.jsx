@@ -50,7 +50,7 @@ function CustomerSignIn() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ genre, firstName, lastName, dateOfBirth, email, password, phone })
             };
-            fetch('http://localhost:8000/log/registration', requestOptions)
+            fetch('/api/log/registration', requestOptions)
             .then(data => {
                 console.log(data)
                 if(data.status == 201){

@@ -27,7 +27,7 @@ function DiscreetLingerie() {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       };
-      fetch('http://localhost:8000/product/list/lingerie-discrete', { requestOptions })
+      fetch('/api/product/list/lingerie-discrete', { requestOptions })
         .then(response => {
           return response.json()
         })

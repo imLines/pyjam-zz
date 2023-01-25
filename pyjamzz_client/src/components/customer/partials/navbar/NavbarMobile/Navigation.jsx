@@ -18,7 +18,7 @@ function Navigation({isOpen, changeHamburgerVisibility}){
                     <li><Link onClick={changeHamburgerVisibility} className="text-white text-lg">A propos</Link></li>
                     <li><Link onClick={changeHamburgerVisibility} className="text-white text-lg">FAQ</Link></li>
                     <li><Link onClick={changeHamburgerVisibility} to='/client/inscription' className="text-white text-lg">Créer un compte</Link></li>
-                    <li><Link onClick={changeHamburgerVisibility} to='' className="text-white text-lg">Me connecter</Link></li>
+                    <li><Link onClick={changeHamburgerVisibility} to='/client/connexion' className="text-white text-lg">Me connecter</Link></li>
                 </ul>
             </nav> 
         </>

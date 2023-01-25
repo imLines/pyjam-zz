@@ -31,7 +31,7 @@ function AngelNightie() {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             };
-            fetch('http://localhost:8000/product/list/nuisette-ange',  { requestOptions })
+            fetch('/api/product/list/nuisette-ange',  { requestOptions })
                 .then(response => {
                     return response.json()
                 })

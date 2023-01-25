@@ -43,7 +43,7 @@ function SearchComponent({ isOpen, setSearchActive }) {
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                 };
-                fetch(`http://localhost:8000/product/images/${product.hit.id}`, { requestOptions })
+                fetch(`/api/product/images/${product.hit.id}`, { requestOptions })
                     .then(response => {
                         return response.json()
                     })

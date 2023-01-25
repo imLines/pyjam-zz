@@ -11,7 +11,7 @@ function AngelCard({ item }) {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             };
-            fetch(`http://localhost:8000/product/images/${item.id}`, { requestOptions })
+            fetch(`/api/product/images/${item.id}`, { requestOptions })
                 .then(response => {
                     return response.json()
                 })

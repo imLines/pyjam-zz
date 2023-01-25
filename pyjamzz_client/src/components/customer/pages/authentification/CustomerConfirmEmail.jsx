@@ -18,7 +18,7 @@ function CustomerConfirmEmail() {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ token })
                 };
-                fetch('http://localhost:8000/log/confirm-email', requestOptions)
+                fetch('/api/log/confirm-email', requestOptions)
                     .then(response => {
                         setStatusResponse(response.status)
                         console.log(response.status)

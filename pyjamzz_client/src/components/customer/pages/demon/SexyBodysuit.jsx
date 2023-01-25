@@ -30,7 +30,7 @@ function SexyBodysuit(){
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             };
-            fetch('http://localhost:8000/product/list/body-sexy',  { requestOptions })
+            fetch('/api/product/list/body-sexy',  { requestOptions })
                 .then(response => {
                     return response.json()
                 })
