@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import './hamburgerAnimation.css';
 
 function Navigation({isOpen, changeHamburgerVisibility}){
-    const [isConnected, setIsConnected] = useState(false)
+    const [isConnected, setIsConnected] = useState(false);
 
     const navigateTo = useNavigate();
 
@@ -29,20 +29,25 @@ function Navigation({isOpen, changeHamburgerVisibility}){
         changeHamburgerVisibility();
     }
 
+    let activeStyle = "text-white text-lg underline";
+
+    let noActiveStyle= "text-white text-lg";
+    
+
     if(isConnected){
         return (
             <>
                 <nav  className={` ${ isOpen ? 'bg-p-purple h-full fixed w-full flex items-start justify-center mt-20 z-30' : 'hidden'}`}>
                     <ul className="h-3/5 flex flex-col items-center justify-around ">
                         
-                        <li><Link onClick={changeHamburgerVisibility} to='/' className="text-white text-lg ">Accueil</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} to='/client/nos-produits' className="text-white text-lg">Nos produits</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} to='/client/nos-produits/ange' className="text-white text-lg">Partie Ange</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} to='/client/nos-produits/demon' className="text-white text-lg">Partie Démon</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} className="text-white text-lg">Accessoires</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} className="text-white text-lg">A propos</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} className="text-white text-lg">FAQ</Link></li>
-                        <li><Link onClick={e=>logout(e)}  className="text-white text-lg">Me déconnecter</Link></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/'>Accueil</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/client/nos-produits'>Nos produits</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/client/nos-produits/ange' >Partie Ange</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/client/nos-produits/demon' >Partie Démon</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility}  >Accessoires</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility}  >A propos</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility}  >FAQ</NavLink></li>
+                        <li><NavLink onClick={e=>logout(e)}  className="text-white text-lg">Me déconnecter</NavLink></li>
                     </ul>
                 </nav> 
             </>
@@ -53,15 +58,15 @@ function Navigation({isOpen, changeHamburgerVisibility}){
                 <nav  className={` ${ isOpen ? 'bg-p-purple h-full fixed w-full flex items-start justify-center mt-20 z-30' : 'hidden'}`}>
                     <ul className="h-3/5 flex flex-col items-center justify-around ">
                         
-                        <li><Link onClick={changeHamburgerVisibility} to='/' className="text-white text-lg ">Accueil</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} to='/client/nos-produits' className="text-white text-lg">Nos produits</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} to='/client/nos-produits/ange' className="text-white text-lg">Partie Ange</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} to='/client/nos-produits/demon' className="text-white text-lg">Partie Démon</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} className="text-white text-lg">Accessoires</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} className="text-white text-lg">A propos</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} className="text-white text-lg">FAQ</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} to='/client/inscription' className="text-white text-lg">Créer un compte</Link></li>
-                        <li><Link onClick={changeHamburgerVisibility} to='/client/connexion' className="text-white text-lg">Me connecter</Link></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/'>Accueil</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/client/nos-produits'>Nos produits</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/client/nos-produits/ange'>Partie Ange</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/client/nos-produits/demon'>Partie Démon</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility}  >Accessoires</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility}  >A propos</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility}  >FAQ</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/client/inscription'>Créer un compte</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/client/connexion'>Me connecter</NavLink></li>
                     </ul>
                 </nav> 
             </>
