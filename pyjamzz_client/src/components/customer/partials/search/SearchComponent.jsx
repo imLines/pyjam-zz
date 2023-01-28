@@ -19,19 +19,6 @@ function SearchComponent({ isOpen, setSearchActive }) {
         }
     }, [])
 
-    return (
-        <>
-            <div className={isOpen ? 'bg-p-purple h-full fixed w-full flex flex-col items-center justify-start mt-20 z-30 p-11' : 'hidden'}>
-                <InstantSearch indexName='products' searchClient={searchClient}>
-                    <SearchBox />
-                    <div className='h-3/5 w-full  overflow-y-scroll'>
-                        <Hits hitComponent={Hit}  setSearchActive={setSearchActive}/>
-
-                    </div>
-                </InstantSearch>
-            </div>
-        </>
-    )
     function Hit(product) {
         const [picture, setPicture] = useState(null);
         const [loading, setLoading] = useState(true);
@@ -66,6 +53,21 @@ function SearchComponent({ isOpen, setSearchActive }) {
         
     
     }
+
+    return (
+        <>
+            <div className={isOpen ? 'bg-p-purple h-full fixed w-full flex flex-col items-center justify-start mt-20 z-30 p-11' : 'hidden'}>
+                <InstantSearch indexName='products' searchClient={searchClient}>
+                    <SearchBox />
+                    <div className='h-3/5 w-full  overflow-y-scroll'>
+                        <Hits hitComponent={Hit}  setSearchActive={setSearchActive}/>
+
+                    </div>
+                </InstantSearch>
+            </div>
+        </>
+    )
+
 };
 
 
