@@ -49,6 +49,21 @@ exports.findOne = (req, res)=>{
     }
 }
 
+exports.getProfil = (req, res)=>{
+    try{
+        const token =  req.get('Authorization')
+        const decrypt = jwt.decode(token, process.env.SECRET_KEY_TOKEN_CUSTOMER);
+        Customer.findOne({raw: true, where : {id: decrypt.customerId}})
+        .then(customer=>{
+            if(customer){
+                res.status(200).json({customer})
+            }
+        })
+    }catch(e){
+        res.status(500).send({message: "Error : "+e})
+    }
+}
+
 exports.findAll = (req, res)=>{
  
     try{

@@ -115,3 +115,4 @@ exports.confirmEmail = (req, res)=>{
         res.status(400).send({message: "Token erroné ou corrompu."})
     }
 }
+

@@ -47,6 +47,7 @@ function Navigation({isOpen, changeHamburgerVisibility}){
                         <li><NavLink onClick={changeHamburgerVisibility}  >Accessoires</NavLink></li>
                         <li><NavLink onClick={changeHamburgerVisibility}  >A propos</NavLink></li>
                         <li><NavLink onClick={changeHamburgerVisibility}  >FAQ</NavLink></li>
+                        <li><NavLink onClick={changeHamburgerVisibility} end className={({ isActive }) =>isActive ? activeStyle : noActiveStyle} to='/client/mon-compte' >Mon compte</NavLink></li>
                         <li><NavLink onClick={e=>logout(e)}  className="text-white text-lg">Me déconnecter</NavLink></li>
                     </ul>
                 </nav> 

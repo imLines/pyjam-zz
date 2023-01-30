@@ -48,7 +48,7 @@ require('./routes/wishList.routes')(app);
 
 
 //AlgoliaInit
-sendDataToAlgolia()
+// sendDataToAlgolia()
 
 
 

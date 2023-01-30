@@ -6,8 +6,9 @@ module.exports = app => {
     const auth = require('../config/auth.config');
 
     router.post('/create', protected,customer.create);
+    router.get('/profil', auth, customer.getProfil);
     router.get('/all', protected,customer.findAll);
-    router.put('/update/:id', auth,customer.update);
+    router.put('/update/:id', auth, customer.update);
     router.delete('/ban/:id', protected, customer.delete);
     router.get('/:id', auth, customer.findOne); 
 

@@ -4,7 +4,6 @@ function decryptAccessToken(req, res, next){
     try{
         const token =  req.get('Authorization')
         const decodedTokenCustomer = jwt.verify(token, process.env.SECRET_KEY_TOKEN_CUSTOMER)
-        
         if(decodedTokenCustomer){
             next();
         }else{

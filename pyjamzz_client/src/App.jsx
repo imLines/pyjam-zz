@@ -37,7 +37,11 @@ import CustomerConfirmEmail from './components/customer/pages/authentification/C
 import CustomerLogin from './components/customer/pages/authentification/CustomerLogin';
 
 //CUSTOMER PROTECTED
-import CustomerAccount from './components/customer/pages/protected/CustomerAccount';
+import CustomerAccount from './components/customer/pages/account/CustomerAccount';
+import PersonnalInfo from './components/customer/pages/account/PersonnalInfo';
+import PersonnalAdress from './components/customer/pages/account/PersonnalAdress';
+import PersonnalSecurity from './components/customer/pages/account/PersonnalSecurity';
+import PersonnalOrder from './components/customer/pages/account/PersonnalOrder';
 
 
 //SECURITY
@@ -56,8 +60,11 @@ function App() {
                 <Route exact path='/client/inscription' element={<CustomerSignIn/>}/>
                 <Route exact path='/client/connexion' element={<CustomerLogin/>}/>
 
-                <Route exact path='/client/compte-client' element={<CustomerAccessToken><CustomerAccount/></CustomerAccessToken>}>
-                    
+                <Route exact path='/client/mon-compte' element={<CustomerAccessToken><CustomerAccount/></CustomerAccessToken>}>
+                    <Route exact path='/client/mon-compte/mes-informations' element={<PersonnalInfo/>}/>
+                    <Route exact path='/client/mon-compte/mes-adresses' element={<PersonnalAdress/>}/>
+                    <Route exact path='/client/mon-compte/securite' element={<PersonnalSecurity/>}/>
+                    <Route exact path='/client/mon-compte/mes-commandes' element={<PersonnalOrder/>}/>
                 </Route>
 
                 <Route exact path='/client/nos-produits' element={<AllProducts />} />
