@@ -56,7 +56,15 @@ exports.getProfil = (req, res)=>{
         Customer.findOne({raw: true, where : {id: decrypt.customerId}})
         .then(customer=>{
             if(customer){
-                res.status(200).json({customer})
+                res.status(200).json({
+                    genre: customer.genre,
+                    lastName: customer.lastName, 
+                    firstName: customer.firstName,
+                    dateOfBirth: customer.dateOfBirth,
+                    email: customer.email,
+                    phone: customer.phone,
+                    createdAt: customer.createdAt
+                })
             }
         })
     }catch(e){
