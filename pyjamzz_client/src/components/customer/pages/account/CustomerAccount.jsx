@@ -3,28 +3,6 @@ import { Outlet, Link } from "react-router-dom";
 
 function CustomerAccount() {
 
-    useEffect(() => {
-        try {
-            const token = localStorage.getItem('token');
-            console.log(token)
-            const requestOptions = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': token
-                }
-            };
-            fetch('/api/customer/profil', requestOptions)
-                .then(response => {
-                    return response.json()
-                })
-                .then(data => {
-                    console.log(data)
-                })
-        } catch (e) {
-            console.log(e);
-        }
-    }, [])
 
     return (
         <section className="bg-p-light min-h-screen flex flex-col items-center p-5 pt-24">
